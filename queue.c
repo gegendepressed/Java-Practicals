@@ -44,12 +44,13 @@ int dequeue(queue *q) {
         return 0;
     }
     returnval=q->data[q->start];
-    if (q->start+1==MAX)
-        q->start = 0;
-    else if (q->start+1 == q->top) {
+    //printf("\ndequeuelog: s: %d t: %d",q->start,q->top);
+    if ((q->start+1 == q->top) || (q->start==0 && q->top==0)) {
         q->start=-1;
         q->top=-1;
     }
+    else if (q->start+1==MAX)
+        q->start = 0;
     else
         q->start++;
     return returnval;
@@ -57,11 +58,17 @@ int dequeue(queue *q) {
 
 void printqueue(queue *q) {
     int i;
+    //printf("\nRaw: [");
+    //for (i=0;i<MAX;i++) {
+    //    printf("%d ",q->data[i]);
+    //}
     printf("\n");
     i = q->start;
-    while (i<=q->top) {
+    while (1) {
         printf("%d ",q->data[i]);
-        if (i==MAX)
+        if (i==q->top)
+            break;
+        if (i==MAX-1)
             i=0;
         else
             i++;
@@ -81,6 +88,14 @@ int main() {
     printf("\nDequeued: %d",dequeue(&q));
     printqueue(&q);
     enqueue(&q,6);
-    printf("\nEnqueued 6");
+    printqueue(&q);
+    printf("\nDequeued: %d",dequeue(&q));
+    printf("\nDequeued: %d",dequeue(&q));
+    printf("\nDequeued: %d",dequeue(&q));
+    printf("\nDequeued: %d",dequeue(&q));
+    printf("\nDequeued: %d",dequeue(&q));
+    printf("\nDequeued: %d",dequeue(&q));
+    printqueue(&q);
+    enqueue(&q,8);
     printqueue(&q);
 }
