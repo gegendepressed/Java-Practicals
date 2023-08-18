@@ -1,0 +1,12 @@
+#include <iostream>
+using namespace std;
+void add (int a, int b){
+    cout<<"Sum"<<(a+b);
+}
+void add (double a, double b,double c){
+    cout<<"Sum"<<(a+b+c);
+}
+int main(){
+    add(6,7);
+    add(5.3,6.7,7.8);
+}
