@@ -8,7 +8,7 @@ import java.util.Scanner;
 class LessBalanceException extends Exception{
 	String message;
 	public LessBalanceException(String message){
-		this.message = message;
+		super(message);
 		}
 	}
 public class UserDefinedException{
